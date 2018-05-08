@@ -1,21 +1,54 @@
 import * as React from 'react';
 import {Component} from "react";
+import {Collapse, Nav, Navbar, NavbarBrand, NavItem, NavLink} from 'reactstrap';
 import './App.css';
 import {Manager} from './components/Manager';
 
-class App extends Component {
+interface IState {
+  isOpen: boolean;
+  manager: boolean;
+}
+
+class App extends Component<{}, IState> {
+
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      isOpen: false,
+      manager: false,
+    };
+    this.openManager = this.openManager.bind(this);
+    this.toggle = this.toggle.bind(this);
+  }
+
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          {/*<img src={logo} className="App-logo" alt="logo" />*/}
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          <Manager/>
-        </p>
+      <div>
+        <Navbar color="faded" light={true} expand="md">
+          <NavbarBrand className="mr-auto">Managing nsl dictionary</NavbarBrand>
+          <Collapse isOpen={this.state.isOpen} navbar={true}>
+            <Nav className="ml-auto" navbar={true}>
+              <NavItem>
+                <NavLink onClick={this.openManager}>Add new word</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+        {this.state.manager ? <Manager/> : null}
       </div>
     );
+  }
+
+  private toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  private openManager() {
+    this.setState({
+      manager: !this.state.manager,
+    });
   }
 }
 
