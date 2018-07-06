@@ -28,24 +28,24 @@ interface IState {
 
 export class Manager extends Component<{}, IState> {
 
+  public state = {
+    addExample: void 0 as number,
+    antonym: '',
+    antonyms: [] as number[],
+    en: '',
+    eo: '',
+    example: '',
+    meaning: '',
+    meanings: [] as IMeaning[],
+    root: void 0 as  { value: string; id: number },
+    rootValue: '',
+    synonym: '',
+    synonyms: [] as number[],
+    tag: '',
+    word: '',
+  };
   constructor(props: {}) {
     super(props);
-    this.state = {
-      addExample: void 0,
-      antonym: '',
-      antonyms: [],
-      en: '',
-      eo: '',
-      example: '',
-      meaning: '',
-      meanings: [],
-      root: void 0,
-      rootValue: '',
-      synonym: '',
-      synonyms: [],
-      tag: '',
-      word: '',
-    };
     this.addWordHandler = this.addWordHandler.bind(this);
     this.addEn = this.addEn.bind(this);
     this.addEo = this.addEo.bind(this);
