@@ -20,7 +20,7 @@ class Login extends Component<IProps> {
   }
   public login(data: any) {
     fetch(`${config.localServer}/auth/login`, {
-      body: `username=${data.username}&password=${data.password}`,
+      body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
       method: 'post',
       mode: 'no-cors',
